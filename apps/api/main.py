@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from apps.api.routes.ingest import router as ingest_router
 from packages.core.config import get_settings
 
 
@@ -11,6 +11,7 @@ app = FastAPI(
     description="Enterprise AI Copilot Platform API",
 )
 
+app.include_router(ingest_router)
 
 @app.get("/health")
 async def health_check() -> dict:
