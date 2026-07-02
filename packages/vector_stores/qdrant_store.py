@@ -67,16 +67,16 @@ class QdrantVectorStore:
     ) -> list[VectorSearchResult]:
         search_filter = self._build_filter(filters)
 
-        points = self.client.search(
+        response = self.client.query_points(
             collection_name=self.collection_name,
-            query_vector=query_vector,
-            limit=top_k,
+            query=query_vector,
             query_filter=search_filter,
+            limit=top_k,
         )
 
         results: list[VectorSearchResult] = []
 
-        for point in points:
+        for point in response.points:
             payload = point.payload or {}
             text = str(payload.get("text", ""))
 
