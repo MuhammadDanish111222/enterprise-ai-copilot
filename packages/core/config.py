@@ -38,6 +38,14 @@ class AppSettings(BaseSettings):
 
     vector_store: str = Field(default="qdrant", alias="VECTOR_STORE")
     qdrant_url: str = Field(default="http://localhost:6333", alias="QDRANT_URL")
+    qdrant_api_key: str | None = Field(
+    default=None,
+    alias="QDRANT_API_KEY",
+)
+    qdrant_collection_name: str = Field(
+    default="rag_chunks_v1",
+    alias="QDRANT_COLLECTION_NAME",
+)
 
     trace_enabled: bool = Field(default=True, alias="TRACE_ENABLED")
 

@@ -8,11 +8,13 @@ def ingest_document_from_bytes(
     filename: str,
     content: bytes,
     source_uri: str | None = None,
+    access_level: str = "public",
 ) -> IngestionResult:
     document = load_text_document_from_bytes(
         filename=filename,
         content=content,
         source_uri=source_uri,
+        access_level=access_level,
     )
 
     chunks = chunk_document(document)
